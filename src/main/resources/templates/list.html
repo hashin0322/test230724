@@ -1,0 +1,33 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+            <td>번호</td>
+            <td>제목</td>
+            <td>작성자</td>
+            <td>작성일</td>
+            <td>조회수</td>
+            <td>추천수</td>
+        </tr>
+        </thead>
+
+
+        <tbody>
+        <tr th:each="post, loop : ${postList}">
+            <td th:text="${loop.count}"></td>
+            <td>
+                <a th:href="@{|/post/detail/${post.id}|}" th:text="${post.subject}"></a>
+            </td>
+            <td th:text="${post.author}"></td>
+            <td th:text="${#temporals.format(post.date, 'yyyy-MM-dd HH:mm')}"></td>
+            <td th:text="${post.view}"></td>
+            <td th:text="${post.hit}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+    <a th:href="@{/post/create}" class="btn btn-primary">등록하기</a>
+</div>
+
+</html>
